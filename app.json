@@ -1,0 +1,33 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/switchcity/switchcity",
+    "pages/weather/weather"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#689F38",
+    "navigationBarTitleText": "城市选择器",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "position": "top",
+    "backgroundColor": "#689F38",
+    "color": "#DCEDC8",
+    "selectedColor": "#DCEDC8",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/switchcity/switchcity",
+        "text": "搜索"
+      },
+      {
+        "pagePath": "pages/weather/weather",
+        "text": "天气"
+      }
+    ]
+  }
+}
