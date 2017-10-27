@@ -30,4 +30,5 @@
       <view class="weather">{{weather.ganmao}}</view>    
     </view>
   </view>
+  <view class="thisCityName" bindtap="getNews">获得新闻</view>
 </view>

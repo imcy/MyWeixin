@@ -2,7 +2,9 @@
   "pages": [
     "pages/index/index",
     "pages/switchcity/switchcity",
-    "pages/weather/weather"
+    "pages/weather/weather",
+    "pages/news/news",
+    "pages/detail/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -19,6 +21,10 @@
       {
         "pagePath": "pages/index/index",
         "text": "首页"
+      },
+      {
+        "pagePath": "pages/news/news",
+        "text": "新闻"
       },
       {
         "pagePath": "pages/switchcity/switchcity",
