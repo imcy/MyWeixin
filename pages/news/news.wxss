@@ -52,3 +52,16 @@
 .swiper-image {
 	width: 100%;
 }
+.icon-image{
+  width:100rpx;
+  height:100rpx;
+  margin: 20rpx 10rpx 0 40rpx;
+}
+.imagetext{
+  margin: 0 0 10rpx 10rpx;
+  color:  #666;
+  font-size:15px;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+}

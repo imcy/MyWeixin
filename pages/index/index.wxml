@@ -1,4 +1,6 @@
 <!--index.wxml-->
+<import src="../movies/movie-list/movie-list-template.wxml" />
+<import src="../movies/movie-grid/movie-grid-template.wxml" />
 <view class='customSwiper'>
 <swiper class='banner' autoplay='true' interval='2000' duration='300' bindchange='switchTab'>
   <block wx:for="{{sliderList}}">
@@ -25,10 +27,19 @@
       <!--城市名称 当前日期-->
       <view class="city">{{location}} ({{today}})</view>
       <!--当天温度-->
-      <view class="temp">{{weather.wendu}}℃</view>
+      <view class="temp">{{weatherData.temperature}}</view>
       <!--感冒描述-->
-      <view class="weather">{{weather.ganmao}}</view>    
+      <view class="weather">
+        <view>{{weatherData.weatherDesc}}</view>
+        <view>{{weatherData.wind}}</view>
+        <view>PM2.5: {{weatherData.pm25}}</view>
+      </view>
+      <view class="life">{{life.des}}</view>
     </view>
   </view>
-  <view class="thisCityName" bindtap="getNews">获得新闻</view>
+  <view class="container" wx:if="{{containerShow}}">
+    <view class="movies-template">
+      <template is="movieListTemplate" data="{{...inTheaters}}" />
+    </view>
+  </view>
 </view>

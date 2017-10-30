@@ -1,4 +1,18 @@
 <!--pages/news/news.wxml-->
+<view class='imageicon'>
+  <image class="icon-image" src="../../images/report.png" bindtap='clickNation'/>
+  <image class="icon-image" src="../../images/lifebuoy.png" bindtap='clickSport'/>
+  <image class="icon-image" src="../../images/light.png" bindtap='clickScience'/>
+  <image class="icon-image" src="../../images/lollipop.png" bindtap='clickHappy'/>
+  <image class="icon-image" src="../../images/purse.png" bindtap='clickFinance'/>
+</view>
+<view class='imagetext'>
+  <view>国际</view>
+  <view>体育</view>
+  <view>科技</view>
+  <view>娱乐</view>
+  <view>财经</view>
+</view>
 <view class="container news-list">
   <block wx:for="{{topNews}}">
     <view class="news-item" data-title="{{item.title}}" data-url="{{item.url}}" bindtap="bindViewTap">

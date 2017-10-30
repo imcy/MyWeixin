@@ -6,7 +6,7 @@ Page({
    */
   data: {
     topNews: [],
-    techNews: []
+    newsType:'topNews'
   },
 
   /**
@@ -16,7 +16,7 @@ Page({
     var that = this
     // 访问聚合数据的网络接口-头条新闻
     wx.request({
-      url: 'http://v.juhe.cn/toutiao/index',
+      url: 'https://v.juhe.cn/toutiao/index',
       data: {
         type: 'topNews',
         key: 'a9f703a0200d68926f707f3f13629078'
@@ -41,18 +41,78 @@ Page({
       url: '../detail/detail?title=' + event.currentTarget.dataset.title + '&url=' + event.currentTarget.dataset.url
     })
   },
+  clickNation:function(){
+    this.setData({
+      newsType: 'guoji'
+    })
+   this.getNews();
+  }, 
+  clickSport: function () {
+    this.setData({
+      newsType: 'guoji'
+    })
+    this.getNews();
+  },
+  clickScience:function(){
+    this.setData({
+      newsType: 'keji'
+    })
+    this.getNews();
+  },
+  clickScience: function () {
+    this.setData({
+      newsType: 'keji'
+    })
+    this.getNews();
+  },
+  clickHappy:function(){
+    this.setData({
+      newsType: 'yule'
+    })
+    this.getNews();
+  },
+  clickFinance:function(){
+    this.setData({
+      newsType: 'caijing'
+    })
+    this.getNews();
+  },
+  getNews:function(){
+    var that = this
+    // 访问聚合数据的网络接口-头条新闻
+    wx.request({
+      url: 'https://v.juhe.cn/toutiao/index',
+      data: {
+        type: this.data.newsType,
+        key: 'a9f703a0200d68926f707f3f13629078'
+      },
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        console.log(res);
+        if (res.data.error_code == 0) {
+          that.setData({
+            topNews: res.data.result.data
+          })
+        } else {
+          console.log('获取失败');
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    
   },
 
   /**
