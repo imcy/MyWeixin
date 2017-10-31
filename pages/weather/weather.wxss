@@ -1,29 +1,62 @@
-/* pages/weather/weather.wxss */
-@import "../index/index.wxss";
-/*最近五天天气信息*/
+/**index.wxss**/
+.wrapper{
+  width:100%;
+  height:100%;
+  box-sizing: border-box;
+  position:absolute;/*绝对定位*/
+  top:0;
+  left:0;
+  padding:30rpx;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.curWeather{
+  height:650rpx;
+  display: flex;
+  flex-direction: column;/*纵向*/
+}
+
+.bg{
+  height:700rpx; 
+  width:750rpx;
+}
+
+.curTemperature{
+  color:#fff;
+  font-size: 0.8em;
+  flex-grow: 1;/*表示将剩余的空间分配给它*/
+}
+
+.tmp{
+  font-size: 5em;
+}
+.curExtern{
+  display: flex;
+  flex-direction: row;/*横向*/
+  justify-content: space-around;
+  color:#fff;
+}
+.val{
+  text-align: center;
+  font-size: 1.2em;
+}
+.line{
+  border:0.9rpx solid #fff;
+}
+.typeImg{
+  width:50rpx;
+  height:50rpx;
+  vertical-align: middle;
+}
+.castItem{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1rpx solid #ccc; 
+  padding:50rpx 10rpx;
+}
 .forecast{
-  display:flex;
-  margin-top:50rpx;
-  margin-left: 15rpx;
-  margin-right: 15rpx;
-  align-self:flex-end;
-}
-
-/*每一天的天气信息*/
-.next-day{
-  width:20%;
-  height:450rpx;
-  text-align:center;
-  line-height:30px;
-  font-size:14px;
-  margin: 0 3rpx;
-  border:1px solid #8BC34A;
-  border-radius:10rpx;
-}
-
-/*日期*/
-.date{
-  margin-bottom:20rpx;
-  border-bottom:1px solid #8BC34A;
-  color:#F29F39;
+  color:#8BC34A;
+  /*background: #aaa;*/
+  margin-top:40rpx;
 }

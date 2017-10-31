@@ -27,14 +27,16 @@
       <!--城市名称 当前日期-->
       <view class="city">{{location}} ({{today}})</view>
       <!--当天温度-->
-      <view class="temp">{{weatherData.temperature}}</view>
-      <!--感冒描述-->
+      <view class="temp">{{weatherData.tmp}}℃</view>
+      <!--其他描述-->
       <view class="weather">
-        <view>{{weatherData.weatherDesc}}</view>
-        <view>{{weatherData.wind}}</view>
-        <view>PM2.5: {{weatherData.pm25}}</view>
+        <view>{{weatherData.cond_txt}}</view>
+        <view>{{weatherData.wind_dir}}</view>
+        <view>{{weatherData.wind_sc}}</view>
+        <view>PM2.5: {{air.pm25}}</view>
+        <view>{{air.qlty}}</view>
       </view>
-      <view class="life">{{life.des}}</view>
+      <view class="life">{{dress.txt}}</view>
     </view>
   </view>
   <view class="container" wx:if="{{containerShow}}">

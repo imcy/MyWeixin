@@ -33,7 +33,8 @@ App({
   globalData: {
     defaultCity: '广州市',
     defaultCounty: '番禺区',
-    defaultWeather:'正在获取天气',
+    weatherData: '',
+    air: '',
     day:'',
     g_isPlayingMusic: false,
     g_currentMusicPostId: null,

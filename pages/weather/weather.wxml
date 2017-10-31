@@ -1,37 +1,42 @@
-<!--pages/weather/weather.wxml-->
-<view class="content">
-    <!--显示当天的天气信息-->
-    <view class="info">
-      <!--城市名称 当前日期-->
-      <view class="city">{{location}} ({{today}})</view>
-      <!--当天温度-->
-      <view class="temp">{{weather.wendu}}℃</view>
-      <!--感冒描述-->
-      <view class="weather">{{weather.ganmao}}</view>    
+<!--index.wxml-->
+<image class="bg" mode="aspectFill" src="../../images/weather/day.jpg"></image>
+<view class="wrapper">
+  <view class="curWeather">
+    <view class="curTemperature">
+      <view class="tmp">{{now.tmp}}°</view>
+      <view class="city">{{city}}{{district}}</view>
+      <view class="type">{{now.cond_txt}} | 空气 {{quality.qlty}}</view>
     </view>
-    <!--昨天的天气信息-->
-    <view class="yesterday">
-      <view class="detail"><text class="yesterday-title">昨天</text> 
-          {{weather.yesterday.date}}</view>
-      <view class="detail">  
-          {{weather.yesterday.type}}  <!--天气类型，如阴、晴--> 
-          {{weather.yesterday.fx}}  <!--风向-->
-          {{weather.yesterday.low}}  <!--最低温度-->
-          {{weather.yesterday.high}}  <!--最高温度-->
+    <view class="curExtern">
+      <view class="wind">
+        <view class="">{{now.wind_dir}}</view>
+        <view wx:if="{{now.wind.sc=='微风'}}" class="val">{{"<="}}2级</view>
+        <view wx:else class="val">{{now.wind_sc}}级</view>
+      </view>
+      <view class="line"></view>
+      <view class="relWet">
+        <view class="">相对湿度</view>
+        <view class="val">{{now.hum}}%</view>
+      </view>
+      <view class="line"></view>
+      <view class="humanTmp">
+        <view class="">体感温度</view>
+        <view class="val">{{now.fl}}°</view>
       </view>
     </view>
-<!--最近五天天气信息-->
-  <view class="forecast" >
-    <view class="next-day"  wx:key="{{index}}" wx:for="{{weather.forecast}}" >
-      <!--日期-->
-      <view class="detail date">{{item.date}}</view>
-      <!--天气类型-->
-      <view class="detail">{{item.type}}</view>
-      <!--最高温度-->
-      <view class="detail">{{item.high}}</view>
-      <!--最低温度-->
-      <view class="detail">{{item.low}}</view>
-    </view>
-  </view>  
+  </view>
+  <view class="forecast">
+    <block wx:for="{{forecast}}" wx:for-index="index" wx:for-item="fc">
+      <view class="castItem">
+        <view class="castDay">{{showday[index]}}</view>
+        <view class="castType">
+          <image class="typeImg" src="../../images/weather/{{fc.cond_code_d}}.png"></image>
+          {{fc.cond_txt_d}} | {{fc.wind_sc}}
+        </view>
+        <view class="castTmp">
+          {{fc.tmp_max}}° / {{fc.tmp_min}}°
+        </view>
+      </view>
+    </block>
+  </view>
 </view>
-

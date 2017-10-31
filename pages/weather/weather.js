@@ -1,72 +1,46 @@
-const appInstance = getApp();
-// pages/weather/weather.js
+//index.js
+//获取应用实例
+var app = getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    weather:"",
-    today:""
+    weekday: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
+    showday: ['今天', '明天', ''],
+    city:'', //城市
+    district:'', //区域
+    now:'',
+    forecast:'' //七日天气预报
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
-    this.setData({
-      weather: appInstance.globalData.defaultWeather,
-      location: appInstance.globalData.defaultCity,
-      today: appInstance.globalData.day
+    var that = this;
+    var city = app.globalData.defaultCity.slice(0, 2);
+    that.setData({
+      city: app.globalData.defaultCity, //今天天气情况数组 
+      district: app.globalData.defaultCounty //生活指数
+    });
+    that.getWeather(city);//获得天气
+  },
+  //当页面加载完成
+  onLoad: function () {
+    var that = this;
+    var date = new Date();
+    console.log(date.getDay());
+    that.setData({
+      'showday[2]': this.data.weekday[(date.getDay() + 2) % 7],
+      'showday[3]': this.data.weekday[(date.getDay() + 3) % 7],
+      'showday[4]': this.data.weekday[(date.getDay() + 4) % 7],
+      'showday[5]': this.data.weekday[(date.getDay() + 5) % 7],
+      'showday[6]': this.data.weekday[(date.getDay() + 6) % 7]
+    });
+    console.log(this.data.showday);
+   
+  },
+  //获取天气
+  getWeather: function (city) {
+    var that = this;
+    that.setData({
+          now: app.globalData.weatherData.now, //今天天气情况数组 
+          forecast: app.globalData.weatherData.daily_forecast,
+          air: app.globalData.air
     });
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
-})
+});

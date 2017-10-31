@@ -1,25 +1,26 @@
 var app = getApp();
 var bmap = require('../../libs/bmap-wx.js'); 
 var util = require('../../utils/util.js')
+const config = require('../../utils/config.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    location: app.globalData.defaultCity,
-    county: app.globalData.defaultCounty,
+    location: '',
+    county: '',
     sliderList: [
       { selected: true, imageSource: '../../images/1.jpg' },
       { selected: false, imageSource: '../../images/2.jpg' },
       { selected: false, imageSource: '../../images/3.jpg' },
     ],
     today:"",
-    weather:"",
     inTheaters: {},
     containerShow: true,
     weatherData: '' ,
-    life:''
+    air:'',
+    dress:''
   },
 
   /**
@@ -30,7 +31,7 @@ Page({
     this.setData({
       today: app.globalData.day  //更新当前日期
     });
-    this.getWeather();
+    this.getLocation();
     var inTheatersUrl = app.globalData.doubanBase +
       "/v2/movie/in_theaters" + "?start=0&count=6";
     this.getMovieListData(inTheatersUrl, "inTheaters", "正在热映");
@@ -53,6 +54,35 @@ Page({
       }
     })
   }, 
+  //定位当前城市的函数
+  getLocation: function () {
+    console.log("正在定位城市");
+    var that = this;
+    wx.getLocation({
+      type: 'wgs84',
+      success: function (res) {
+        //当前的经度和纬度
+        let latitude = res.latitude
+        let longitude = res.longitude
+        wx.request({
+          url: `https://apis.map.qq.com/ws/geocoder/v1/?location=${latitude},${longitude}&key=${config.key}`,
+          success: res => {
+            console.log(res);
+            app.globalData.defaultCity = res.data.result.ad_info.city;
+            app.globalData.defaultCounty=res.data.result.ad_info.district;
+            that.setData({
+              location: app.globalData.defaultCity,
+              county: app.globalData.defaultCounty
+            });
+            console.log(app.globalData.defaultCity);
+            console.log(app.globalData.defaultCounty);
+            //that.getWeather();
+            //that.getAir();
+          }
+        })
+      }
+    })
+  },
   processDoubanData: function (moviesDouban, settedKey, categoryTitle) {
     var movies = [];
     for (var idx in moviesDouban.subjects) {
@@ -101,6 +131,7 @@ Page({
       county: app.globalData.defaultCounty
     });
     this.getWeather();
+    this.getAir();
   },
   jump:function(){
     wx.switchTab({
@@ -124,6 +155,7 @@ Page({
   }, 
   //获取天气
   getWeather:function(e){
+    /*
     var that = this;
     // 新建百度地图对象 
     var BMap = new bmap.BMapWX({
@@ -144,25 +176,54 @@ Page({
     BMap.weather({
       fail: fail,
       success: success
-    });
-  /*
+    });*/
+    var city = this.data.location.slice(0, 2); //分割字符串
+    var that = this;
+    var url = "https://free-api.heweather.com/s6/weather";
+    var param = {
+      key: "c5bfaf6bf312400891a8bd572b751dec",
+      location: city
+    };
+    //发出请求
     wx.request({
-      url: `http://wthrcdn.etouch.cn/weather_mini?city=${app.globalData.defaultCity}`,
-      success: res => {
+      url: url,
+      data: param,
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
         console.log(res);
-        var weather;
-        app.globalData.defaultWeather = res.data.data;//获取天气数据
-        weather =app.globalData.defaultWeather;
-        for (var i = 0; i < weather.forecast.length; i++) {
-            var d = weather.forecast[i].date;
-            //处理日期信息，添加空格
-            weather.forecast[i].date = '　' + d.replace('星期', '　星期');
-          }
-          this.setData({
-            weather: weather,    //更新天气信息
-          })
-        }
-    })*/
+        app.globalData.weatherData = res.data.HeWeather6[0];
+        that.setData({
+          weatherData: app.globalData.weatherData.now, //今天天气情况数组 
+          dress: res.data.HeWeather6[0].lifestyle[1] //生活指数
+        });
+      }
+    })
+  },
+  getAir: function (e){
+    var city = this.data.location.slice(0, 2); //分割字符串
+    var that = this;
+    var url = "https://free-api.heweather.com/s6/air/now";
+    var param = {
+      key: "c5bfaf6bf312400891a8bd572b751dec",
+      location: city
+    };
+    //发出请求
+    wx.request({
+      url: url,
+      data: param,
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        console.log(res);
+        app.globalData.air = res.data.HeWeather6[0].air_now.air_city;
+        that.setData({
+          air: app.globalData.air
+        });
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面隐藏

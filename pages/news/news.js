@@ -49,7 +49,7 @@ Page({
   }, 
   clickSport: function () {
     this.setData({
-      newsType: 'guoji'
+      newsType: 'tiyu'
     })
     this.getNews();
   },
