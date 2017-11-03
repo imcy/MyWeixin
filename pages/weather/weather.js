@@ -8,7 +8,8 @@ Page({
     city:'', //城市
     district:'', //区域
     now:'',
-    forecast:'' //七日天气预报
+    forecast:'',//七日天气预报
+    quality:'' //空气质量
   },
   onShow: function () {
     var that = this;
@@ -26,10 +27,6 @@ Page({
     console.log(date.getDay());
     that.setData({
       'showday[2]': this.data.weekday[(date.getDay() + 2) % 7],
-      'showday[3]': this.data.weekday[(date.getDay() + 3) % 7],
-      'showday[4]': this.data.weekday[(date.getDay() + 4) % 7],
-      'showday[5]': this.data.weekday[(date.getDay() + 5) % 7],
-      'showday[6]': this.data.weekday[(date.getDay() + 6) % 7]
     });
     console.log(this.data.showday);
    
@@ -40,7 +37,7 @@ Page({
     that.setData({
           now: app.globalData.weatherData.now, //今天天气情况数组 
           forecast: app.globalData.weatherData.daily_forecast,
-          air: app.globalData.air
+          quality: app.globalData.air
     });
   },
 });

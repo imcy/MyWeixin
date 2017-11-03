@@ -87,7 +87,6 @@ function convertToCastInfos(casts) {
   }
   return castsArray;
 }
-
 function pushCity() {
 
 }

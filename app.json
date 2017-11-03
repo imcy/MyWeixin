@@ -7,7 +7,8 @@
     "pages/news/news",
     "pages/detail/detail",
     "pages/movies/movie-detail/movie-detail",
-    "pages/movies/more-movie/more-movie"
+    "pages/movies/more-movie/more-movie",
+    "pages/map/map"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -26,8 +27,8 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/news/news",
-        "text": "新闻"
+        "pagePath": "pages/map/map",
+        "text": "周边"
       },
       {
         "pagePath": "pages/movies/movies",
