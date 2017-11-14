@@ -218,7 +218,7 @@ Page({
       },
       success: function (res) {
         console.log(res);
-        app.globalData.air = res.data.HeWeather6[0].air_now.air_city;
+        app.globalData.air = res.data.HeWeather6[0].air_now_city;
         that.setData({
           air: app.globalData.air
         });
