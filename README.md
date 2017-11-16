@@ -1,8 +1,7 @@
 # MyWeixin
 微信小程序生活服务：蜗牛懒生活
 自己拼凑了一个微信小程序，并且把它上线审核了。
-<iframe height=672 width=376 src="https://github.com/imcy/MyWeixin/blob/master/show.wmv">
-
+![](https://github.com/imcy/MyWeixin/blob/master/show.wmv)
 **感谢以下作品作者**
 主要用到了几个网上的demo: 
 >城市切换器：http://www.wxapp-union.com/forum.php?mod=viewthread&tid=10983 
