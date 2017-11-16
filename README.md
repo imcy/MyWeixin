@@ -1,13 +1,14 @@
 # MyWeixin
 微信小程序生活服务：蜗牛懒生活
 自己拼凑了一个微信小程序，并且把它上线审核了。
-![转换的很不清晰](https://github.com/imcy/MyWeixin/blob/master/%E6%88%90%E6%9E%9C%E5%B1%95%E7%A4%BA/show.gif)
-**感谢以下作品作者**
+![转换的很不清晰](https://github.com/imcy/MyWeixin/blob/master/%E6%88%90%E6%9E%9C%E5%B1%95%E7%A4%BA/show.gif)</br>
+
+**感谢以下作品作者**</br>
 主要用到了几个网上的demo: 
->城市切换器：http://www.wxapp-union.com/forum.php?mod=viewthread&tid=10983 
-豆瓣电影：https://github.com/songhaoreact/weixin 
-天气：http://blog.csdn.net/Inite/article/details/74906945 
-百度POI：http://lbsyun.baidu.com/index.php?title=wxjsapi/guide/getpoi
+>城市切换器：http://www.wxapp-union.com/forum.php?mod=viewthread&tid=10983 </br>
+豆瓣电影：https://github.com/songhaoreact/weixin </br>
+天气：http://blog.csdn.net/Inite/article/details/74906945 </br>
+百度POI：http://lbsyun.baidu.com/index.php?title=wxjsapi/guide/getpoi</br>
 
 **调用的API（都是支持https的）**
 >城市定位：自带+腾讯地图 
